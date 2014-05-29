@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Http Json MessageConverter -->
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean id="jsonConverter"
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes" value="application/json" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- My REST client injected with spring RestTemplate -->
+	<bean id="ApiUserRepository" class="com.zayats.dal.ApiUserRepository">
+		<property name="restTemplate" ref="restTemplate" />
+	</bean>
+
+	<bean id="ApiEventRepository" class="com.zayats.dal.ApiEventRepository">
+		<property name="restTemplate" ref="restTemplate" />
+	</bean>
+
+	<bean id="ApiInvitationRepository" class="com.zayats.dal.ApiInvitationRepository">
+		<property name="restTemplate" ref="restTemplate" />
+	</bean>
+
+	<bean id="ApiShoplistRepository" class="com.zayats.dal.ApiShoplistRepository">
+		<property name="restTemplate" ref="restTemplate" />
+	</bean>
+
+</beans>

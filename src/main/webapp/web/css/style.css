@@ -1,0 +1,171 @@
+body {
+    margin-top: 100px;
+}
+
+.container .credit {
+	margin: 20px 0;
+}
+
+.error {
+	color: red;
+}
+
+.td-right {
+	padding-top: 7px;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.family-div {
+	text-align: center;
+}
+
+.family-table {
+	min-width: 600px;
+	max-width: 600px;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.family-table td {
+	min-width: 200px;
+	max-width: 200px;
+	border-bottom: 1px solid #eeeeee;
+	padding: 6px;
+}
+
+.users-table {
+	min-width: 600px;
+	max-width: 600px;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.users-table td {
+	min-width: 150px;
+	max-width: 150px;
+	border-bottom: 1px solid #eeeeee;
+	padding: 6px;
+}
+
+.invitations-table {
+	min-width: 600px;
+	max-width: 600px;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.invitations-table td {
+	min-width: 120px;
+	max-width: 120px;
+	border-bottom: 1px solid #eeeeee;
+	padding: 6px;
+}
+
+.shopitems-table td {
+	border-bottom: 1px solid #eeeeee;
+	padding: 6px;
+}
+
+.shopitems-name {
+	width: 300px;
+}
+
+.shopitems-quantity {
+	width: 110px;
+}
+
+.shopitems-action {
+	width: 100px;
+}
+
+#shopitems {
+	border: 2px solid #eeeeee;
+	width: 510px;
+	border-radius: 6px;
+	margin-left: 8px;
+	padding: 10px;
+	border-radius: 6px;
+	min-height: 200px;
+}
+
+#shopitems b {
+	font-size: large;
+	padding-right: 20px;
+}
+
+.shoplists td {
+	vertical-align: top;
+	text-align: left;
+}
+
+.shoplists {
+	width: 680px;
+	min-width: 680px;
+	max-width: 680px;
+}
+
+.sidebar {
+	width: 250px;
+	float: left;
+	border: 2px solid #eeeeee;
+	border-radius: 6px;
+	color: #049cdb;
+}
+
+.sidebar ul {
+	cursor: pointer;
+	margin: 5px;
+	padding-left: 25px;
+	border-bottom: 1px solid #eeeeee;
+}
+
+.sidebar ul li {
+	padding-bottom: 8px;
+}
+
+.sidebar h4 {
+	border-bottom: 1px solid #eeeeee;
+	padding-left: 15px;
+	padding-bottom: 9px;
+}
+
+.sidebar a {
+	padding-top: 4px;
+	border-top: 1px solid #eeeeee;
+}
+
+.hide-element {
+	display: none;
+}
+
+.show-element {
+	display: block;
+}
+
+div #form {
+	padding-bottom: 8px;
+}
+
+.jumbotron {
+	margin: 40px;
+	text-align: center;
+}
+
+.jumbotron h1 {
+	font-size: 60px;
+	line-height: 1;
+}
+
+.jumbotron .lead {
+	font-size: 20px;
+	line-height: 1.25;
+}
+
+.jumbotron .btn {
+	font-size: 20px;
+	padding: 10px;
+}
