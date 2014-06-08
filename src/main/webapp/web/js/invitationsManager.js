@@ -1,6 +1,6 @@
 function InvitationsManager () {
-//	this.url = "http://familyshoplist.herokuapp.com";
-	this.url = "http://localhost:8080";
+	this.url = "http://emtclient.herokuapp.com";
+//	this.url = "http://localhost:8080";
 }
 
 InvitationsManager.prototype.inviteUser = function(userId) {

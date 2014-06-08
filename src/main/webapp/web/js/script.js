@@ -12,8 +12,8 @@ jQuery(function ($) {
     });
 });
 
-//var url = "http://familyshoplist.herokuapp.com";
-var url = "http://localhost:8080";
+var url = "http://emtclient.herokuapp.com";
+//var url = "http://localhost:8080";
 
 // Getting users in family manager page
 $("#search-button").click(function () {

@@ -65,7 +65,6 @@
 <script src="<spring:url value="/web/js/bootstrap-select.js" />"></script>
 <script src="<spring:url value="/web/js/script.js" />"></script>
 <script src="<spring:url value="/web/js/tasksManager.js" />"></script>
-<script src="<spring:url value="/web/js/shopitemsManager.js" />"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         if ($(".tabbable ul").length > 0) {
