@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -28,16 +29,18 @@ public class UsersController extends AuthorizedController {
 	@Autowired
 	ApiInvitationRepository invitationRepository;
 
-	@RequestMapping(value = "/delete/{username}/{familyId}")
-	public String deleteUserFromFamily(@PathVariable String username,
+	@RequestMapping(value = "/delete/{userId}/{familyId}")
+	public @ResponseBody
+    List<Boolean> deleteUserFromFamily(@PathVariable Integer userId,
 			@PathVariable int familyId, Model model, Principal principal) {
 		model.addAttribute("navigation", naviMap);
 		model.addAttribute("title", "Families");
-		String username1 = principal.getName(); // get logged in username
+		String username1 = getCurrentUser().getUsername(); // get logged in username
 		model.addAttribute("username", username1);
-		familyRepository.deleteUserFromEvent(username, familyId);
+		familyRepository.deleteUserFromEvent(userId, familyId);
 
-		return "redirect:/home/families/" + familyId;
+        return Arrays.asList(new Boolean[]{true});
+        //		return "redirect:/home/families/" + familyId;
 	}
 
 	@RequestMapping(value = "/{userString}/{familyId}", method = RequestMethod.GET)

@@ -30,19 +30,19 @@ public class ApiInvitationRepository {
 		return result.get(0);
 	}
 
-	public List<Boolean> acceptInvitation(int familyId, String username,
+	public List<Boolean> acceptInvitation(int eventId, int userId,
 			int invitationId) {
 		logger.info("Go to api: accept invitation");
 
 		return restTemplate.getForObject(ApiUtils.url + "/home/invitations/accept/"
-				+ familyId + "/" + invitationId + "/" + username, List.class);
+				+ eventId + "/" + invitationId + "/" + userId, List.class);
 	}
 
 	public boolean deleteInvitation(int invitationId) {
 		logger.info("Go to api: delete invitation");
 
 		List<Boolean> result = new ArrayList<Boolean>();
-		result = restTemplate.getForObject(ApiUtils.url + "/home/invitations/decine/"
+		result = restTemplate.getForObject(ApiUtils.url + "/home/invitations/reject/"
 				+ invitationId, List.class);
 		return result.get(0);
 	}

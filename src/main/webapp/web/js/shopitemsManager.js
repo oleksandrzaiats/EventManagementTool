@@ -4,8 +4,8 @@ function ShopitemsManager () {
 
 ShopitemsManager.prototype.loadShopItems = function(shoplistId, name, familyId) {
 	var shopitems = $("#shopitems");
-	var deleteShoplist = "<span><p><b>Shoplist: " + name + "</b><button class='btn btn-mini btn-danger' onclick='new ShoplistsManager().deleteShoplist(" + shoplistId + ", " + familyId + ")'>Delete Shoplist</button></p></span>";
-	var addShopitem = "<p><button class='btn btn-mini btn-success' onclick='new ShopitemsManager().addShopitem(" + shoplistId + ", \"" + name + "\")'>Add Shopitem</button></p>";
+	var deleteShoplist = "<span><p><b>Shoplist: " + name + "</b><button class='btn btn-sm btn-danger' onclick='new ShoplistsManager().deleteTask(" + shoplistId + ", " + familyId + ")'>Delete Shoplist</button></p></span>";
+	var addShopitem = "<p><button class='btn btn-sm btn-success' onclick='new ShopitemsManager().addShopitem(" + shoplistId + ", \"" + name + "\")'>Add Shopitem</button></p>";
 	var text = deleteShoplist + addShopitem;
 	$.ajax({
 		type : 'GET',
@@ -26,7 +26,7 @@ ShopitemsManager.prototype.loadShopItems = function(shoplistId, name, familyId) 
 						bought = "<img src='/web/img/bought.png'/>";
 					}
 					else {
-						bought = "<button class='btn btn-mini btn-success' onclick='new ShopitemsManager().buyShopitem(\"" + result[i].shopitemId + "\", " + shoplistId + ", \"" + name + "\")'>Buy</button>";
+						bought = "<button class='btn btn-sm btn-success' onclick='new ShopitemsManager().buyShopitem(\"" + result[i].shopitemId + "\", " + shoplistId + ", \"" + name + "\")'>Buy</button>";
 					}
 						
 					text += "<tr><td class='shopitems-name'>"
@@ -35,7 +35,7 @@ ShopitemsManager.prototype.loadShopItems = function(shoplistId, name, familyId) 
 							+ result[i].quantity
 							+ "</td><td class='shopitems-action'>"
 							+ bought
-							+ "</td><td class='shopitems-action'><button class='btn btn-mini btn-danger' onclick='new ShopitemsManager().deleteShopitem(\"" + result[i].shopitemId + "\", " + shoplistId + ", \"" + name + "\")'>Delete</button></td></tr>";
+							+ "</td><td class='shopitems-action'><button class='btn btn-sm btn-danger' onclick='new ShopitemsManager().deleteShopitem(\"" + result[i].shopitemId + "\", " + shoplistId + ", \"" + name + "\")'>Delete</button></td></tr>";
 				}
 				text += "</table>";
 			}

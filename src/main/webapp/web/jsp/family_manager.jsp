@@ -34,7 +34,7 @@
 						<div class="label label-success">Owner</div>
 					</c:if> <c:if test="${user.username != username}">
 
-						<button class="btn btn-mini btn-danger"
+						<button class="btn btn-sm btn-danger"
 							onclick="confirmDelete('http://familyshoplist.herokuapp.com/home/users/delete/${user.username}/${familyId}')">
 							Delete </button>
 					</c:if></td>

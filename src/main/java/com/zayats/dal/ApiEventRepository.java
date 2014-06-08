@@ -57,27 +57,26 @@ public class ApiEventRepository {
         return result;
     }
 
-    public boolean deleteUserFromEvent(String username, int eventId) {
+    public boolean deleteUserFromEvent(Integer userId, int eventId) {
         logger.info("Go to api: delete user from event");
 
         List<Boolean> result = new ArrayList<Boolean>();
         result = restTemplate.getForObject(ApiUtils.url + "/home/users/delete/"
-                + username + "/" + eventId, List.class);
+                + userId + "/" + eventId, List.class);
         return result.get(0);
     }
 
-    public List<User> getParticipans(int eventId, String username)
+    public List<User> getParticipans(int eventId)
             throws EmptyResultDataAccessException, EventNotExistsException {
         logger.info("Go to api: get participans of event");
 
-        return restTemplate.getForObject(ApiUtils.url + "/home/events/" + eventId
-                + "/" + username, List.class);
+        return restTemplate.getForObject(ApiUtils.url + "/home/events/users/" + eventId, List.class);
     }
 
-    public List<Event> getAllEventsForUser(String username) {
+    public List<Event> getAllEventsForUser(Integer userId) {
         logger.info("Go to api: get all events for user");
 
-        return restTemplate.getForObject(ApiUtils.url + "/home/shoplists/" + username,
+        return restTemplate.getForObject(ApiUtils.url + "/home/tasks/" + userId,
                 List.class);
     }
 

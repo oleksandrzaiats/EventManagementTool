@@ -43,7 +43,7 @@
 		<property name="restTemplate" ref="restTemplate" />
 	</bean>
 
-	<bean id="ApiShoplistRepository" class="com.zayats.dal.ApiShoplistRepository">
+	<bean id="ApiShoplistRepository" class="com.zayats.dal.ApiTaskRepository">
 		<property name="restTemplate" ref="restTemplate" />
 	</bean>
 

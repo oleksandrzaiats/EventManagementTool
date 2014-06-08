@@ -1,16 +1,16 @@
 function InvitationsManager () {
-	this.url = "http://familyshoplist.herokuapp.com";	
+//	this.url = "http://familyshoplist.herokuapp.com";
+	this.url = "http://localhost:8080";
 }
 
 InvitationsManager.prototype.inviteUser = function(userId) {
 	var infoDiv = $("#info");
-	var user = infoDiv.attr('username');
-	var familyId = infoDiv.attr('familyId');
+	var familyId = infoDiv.attr('eventId');
 	
 	$.ajax({
 		type : 'GET',
 		url : this.url + "/home/invitations/invite/"
-				+ familyId + "/" + user + "/" + userId,
+				+ familyId + "/" + userId,
 		dataType : 'json',
 		async : true,
 		success : function(result) {
@@ -35,13 +35,12 @@ InvitationsManager.prototype.inviteUser = function(userId) {
 	});
 };
 
-InvitationsManager.prototype.loadInvitations = function (username) {
+InvitationsManager.prototype.loadInvitations = function () {
 	var invitations = $("#invitations");
 	invitations.html("Loading...");	
 	$.ajax({
 		type : 'GET',
-		url : this.url + "/home/invitations/"
-				+ username,
+		url : this.url + "/home/invitations/get",
 		dataType : 'json',
 		async : true,
 		success : function(result) {
@@ -49,10 +48,10 @@ InvitationsManager.prototype.loadInvitations = function (username) {
 				message = "You don't have any invitations.";
 			}
 			else {
-				message = "<table class='invitations-table'>";
-				message += "<tr><td><b>Username</b></td><td><b>First Name</b></td><td><b>Last Name</b></td><td><b>Family Name</b></td><td><b>Action</b></td></tr>";
+				message = "<table id='invitations' class='table table-hover table-striped'>";
+				message += "<thead><tr><th>Username</th><th>First Name</th><th>Last Name</th><th>Event</th><th>Action</th><th></th></tr></thead><tbody>";
 				for ( var i = 0; i < result.length; i++) {
-					message += "<tr><td>"
+					message += "<tr data-invite='" + result[i]['invitationId'] + "'><td>"
 						+ result[i]['fromUsername']
 						+ "</td><td>"
 						+ result[i]['firstName']
@@ -61,11 +60,12 @@ InvitationsManager.prototype.loadInvitations = function (username) {
 						+ "</td><td>"
 						+ result[i]['name']
 						+ "</td><td>" +
-								"<button class='btn btn-mini btn-info' onclick='new InvitationsManager().acceptInvitation(\"" + result[i]['familyId'] + "\", \"" + result[i]['invitationId'] + "\")'>Accept</button>  " +
-								"<button class='btn btn-mini btn-danger' onclick='new InvitationsManager().decineInvitation(\"" + result[i]['invitationId'] + "\")'>Decine</button>" +
+								"<button class='btn btn-sm btn-info' onclick='new InvitationsManager().acceptInvitation(\"" + result[i]['eventId'] + "\", \"" + result[i]['invitationId'] + "\")'>Accept</button></td>" +
+								"<td><button class='btn btn-sm btn-danger' onclick='new InvitationsManager().rejectInvitation(\"" + result[i]['invitationId'] + "\")'>Decine</button>" +
 							"</td></tr>";
 				}
 			}
+            message += "</tbody>";
 			invitations.html(message);		
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -80,8 +80,7 @@ InvitationsManager.prototype.loadInvitations = function (username) {
 InvitationsManager.prototype.acceptInvitation = function(familyId, invitationId) {
 	var infoDiv = $("#info");
 	infoDiv.html("Loading...");	
-	var username = $("#username").text();
-	
+
 	$.ajax({
 		type : 'GET',
 		url : this.url + "/home/invitations/accept/"
@@ -92,7 +91,7 @@ InvitationsManager.prototype.acceptInvitation = function(familyId, invitationId)
 			if(result[0]) {
 				infoDiv.removeClass("alert alert-error");
 				infoDiv.addClass("alert alert-success");
-				message = "Invitation has been successfuly accepted.";
+				message = "Invitation has been successfully accepted.";
 			}
 			else {
 				infoDiv.removeClass("alert alert-success");
@@ -111,26 +110,26 @@ InvitationsManager.prototype.acceptInvitation = function(familyId, invitationId)
 	});
 };
 
-InvitationsManager.prototype.decineInvitation = function (invitationId) {
+InvitationsManager.prototype.rejectInvitation = function (invitationId) {
 	var infoDiv = $("#info");
 	infoDiv.html("Loading...");	
 	var username = $("#username").text();
 	
 	$.ajax({
 		type : 'GET',
-		url : this.url + "/home/invitations/decine/" + invitationId,
+		url : this.url + "/home/invitations/reject/" + invitationId,
 		dataType : 'json',
 		async : true,
 		success : function(result) {
 			if(result[0]) {
 				infoDiv.removeClass("alert alert-error");
 				infoDiv.addClass("alert alert-success");
-				message = "Invitation has been successfuly decined.";
+                message = "Invitation has been successfully rejected.";
 			}
 			else {
 				infoDiv.removeClass("alert alert-success");
 				infoDiv.addClass("alert alert-error");
-				message = "Can't decine invitation.";
+				message = "Can't reject invitation.";
 			}
 			infoDiv.html(message);
 			new InvitationsManager().loadInvitations(username);

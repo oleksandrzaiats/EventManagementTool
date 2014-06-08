@@ -17,8 +17,9 @@
 <h3>Your Events</h3>
 
 <div class="row">
+    <div id="eventsError"></div>
     <div class="col-md-12">
-        <table class="table table-hover table-striped" <%=eventsStyle%>>
+        <table id="events" class="table table-hover table-striped" <%=eventsStyle%>>
             <thead>
             <tr>
                 <th>Event</th>
@@ -29,13 +30,13 @@
             </thead>
             <tbody>
             <c:forEach var="event" items="${eventsList}">
-                <tr data-url="events/${event.id}">
+                <tr data-event="${event.id}" data-url="events/${event.id}">
                     <td>${event.name}</td>
                     <td><fmt:formatDate value="${event.date}" pattern="dd/MM/yyyy"/></td>
                     <td><fmt:formatDate value="${event.date}" pattern="HH:mm"/></td>
                     <td>
-                        <button class="btn btn-mini btn-danger"
-                                onclick="confirmDelete('events/delete/${event.id}')">Delete
+                        <button class="btn btn-sm btn-danger"
+                                onclick="confirmDeleteEvent(event, this, ${event.id})">Delete
                         </button>
                     </td>
                 </tr>
@@ -57,7 +58,12 @@
         %>
         <%=errorStyle%>><%=request.getAttribute("errors")%>
 </div>
-<a class="btn btn-primary next" data-toggle="modal" href="#createEvent">Create Event</a>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary next" data-toggle="modal" href="#createEvent">Create Event</a>
+        <p/>
+    </div>
+</div>
 
 <div class="modal fade" id="createEvent">
     <form id="create_event" class="form-horizontal" action="events/add">
@@ -81,7 +87,7 @@
                         <label for="date" class="col-sm-5 control-label">Date</label>
 
                         <div class="col-sm-6">
-                            <div class='input-group date' role="datepicker">
+                            <div class='input-group date' role="datetimepicker">
                                 <input type="text" id='date' name='date' path='date' class="form-control"
                                        placeholder="Date"/>
                                 <span class="input-group-addon"><span
@@ -124,15 +130,17 @@
 <script src="<spring:url value="/web/js/bootstrap.js" />"></script>
 <script src="<spring:url value="/web/js/moment.min.js" />"></script>
 <script src="<spring:url value="/web/js/bootstrap-datetimepicker.min.js" />"></script>
-<script src="<spring:url value="/web/js/script.js" />"></script>
+<script src="<spring:url value="/web/js/bootstrap-select.js" />"></script>
 <script src="<spring:url value="/web/js/script.js" />"></script>
 <script src="<spring:url value="/web/js/invitationsManager.js" />"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="<spring:url value="/web/js/events.js" />"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#create_family").validate({
             rules: {
                 name: {
-                    required: true,
+                    required: true
                 },
                 date: {
                     required: true,

@@ -60,54 +60,65 @@ public class EventsController extends AuthorizedController {
         model.addAttribute("title", "Event Manager");
         String username = principal.getName(); // get logged in username
         model.addAttribute("username", username);
+        model.addAttribute("userId", getCurrentUser().getUserId());
         model.addAttribute("eventsId", eventId);
 
-        List<Event> list = null;
+        List<Event> eventList = null;
         try {
-            list = eventsRepository.getEvent(Integer.parseInt(eventId));
+            eventList = eventsRepository.getEvent(Integer.parseInt(eventId));
         } catch (EventNotExistsException e) {
             model.addAttribute("errors", e.getMessage());
             logger.info("No such event");
             return "event_details";
         }
-        if (list.size() == 0) {
-            list = null;
+        if (eventList.size() == 0) {
+            eventList = null;
         }
 
-        model.addAttribute("title", list.get(0).getName());
-        model.addAttribute("event", list.get(0));
+        model.addAttribute("title", eventList.get(0).getName());
+        model.addAttribute("event", eventList.get(0));
         return "event_details";
     }
 
-    @RequestMapping(value = "users/{eventId}")
-    public String eventsManager(@PathVariable String eventsId, Model model,
+    @RequestMapping(value = "/users/{eventId}")
+    public String eventsManager(@PathVariable int eventId, Model model,
                                 Principal principal) {
         logger.info("Getting events participants for event manager");
 
         model.addAttribute("navigation", naviMap);
-        model.addAttribute("title", "Event Manager");
+        model.addAttribute("title", "Users Manager");
         String username = principal.getName(); // get logged in username
         model.addAttribute("username", username);
-        model.addAttribute("eventsId", eventsId);
 
         List<User> list = null;
         try {
-            list = eventsRepository.getParticipans(Integer.parseInt(eventsId),
-                    username);
+            list = eventsRepository.getParticipans(eventId);
         } catch (EventNotExistsException e) {
             model.addAttribute("errors", e.getMessage());
             logger.info("No such events");
-            return "events_manager";
+            return "user_manager";
         } catch (EmptyResultDataAccessException e) {
             model.addAttribute("errors",
                     "There are no users in events. You can invite someone.");
         }
-
-        if (list.size() == 0)
+        if (list.size() == 0) {
             list = null;
+        }
 
+        List<Event> eventList = null;
+        try {
+            eventList = eventsRepository.getEvent(eventId);
+        } catch (EventNotExistsException e) {
+            model.addAttribute("errors", e.getMessage());
+            logger.info("No such event");
+            return "event_details";
+        }
+        if (eventList.size() == 0) {
+            eventList = null;
+        }
+        model.addAttribute("event", eventList.get(0));
         model.addAttribute("users", list);
-        return "events_manager";
+        return "user_manager";
     }
 
     @RequestMapping(value = "/add")

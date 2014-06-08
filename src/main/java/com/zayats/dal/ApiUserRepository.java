@@ -39,10 +39,10 @@ public class ApiUserRepository {
 		}
 	}
 
-	public List<User> searchUsers(String userString, int familyId) {
+	public List<User> searchUsers(String userString, int eventId) {
 		logger.info("Go to api: search users");
 
 		return restTemplate.getForObject(ApiUtils.url + "/home/users/" + userString
-				+ "/" + familyId, List.class);
+				+ "/" + eventId, List.class);
 	}
 }

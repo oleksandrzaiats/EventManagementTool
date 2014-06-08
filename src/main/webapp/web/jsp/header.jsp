@@ -7,12 +7,18 @@
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${title}</title>
 
     <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/bootstrap.css"/>"/>
     <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/style.css"/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<spring:url value="/web/css/tabs.css"/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<spring:url value="/web/css/bootstrap-select.css"/>"/>
     <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/bootstrap-datetimepicker.css"/>"/>
 

@@ -1,11 +1,7 @@
 package com.zayats.controller;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import com.zayats.dal.ApiEventRepository;
+import com.zayats.dal.ApiInvitationRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zayats.dal.ApiInvitationRepository;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "home/invitations")
@@ -30,14 +29,13 @@ public class InvitationsController extends AuthorizedController {
 	private static final Logger logger = Logger
 			.getLogger(InvitationsController.class);
 
-	@RequestMapping(value = "/{username}")
+	@RequestMapping(value = "/get")
 	public @ResponseBody
-	List<HashMap<String, String>> getInvitations(@PathVariable String username,
-			Model model, Principal principal) {
+	List<HashMap<String, String>> getInvitations(Model model, Principal principal) {
 		logger.info("Getting invitations for user");
 
 		List<HashMap<String, String>> list = invitationRepository
-				.getUserInvitations(username);
+				.getUserInvitations(getCurrentUser().getUsername());
 		return list;
 	}
 
@@ -50,13 +48,12 @@ public class InvitationsController extends AuthorizedController {
 		return "invitations";
 	}
 
-	@RequestMapping(value = "/invite/{familyId}/{fromUsername}/{toUsername}", method = RequestMethod.GET)
+	@RequestMapping(value = "/invite/{familyId}/{toUsername}", method = RequestMethod.GET)
 	public @ResponseBody
 	List<Boolean> inviteUser(@PathVariable String toUsername,
-			@PathVariable int familyId, @PathVariable String fromUsername,
-			Model model, Principal principal) {
+			@PathVariable int familyId, Model model, Principal principal) {
 		logger.info("Send invite to user");
-
+        String fromUsername = getCurrentUser().getUsername();
 		boolean isInvited = invitationRepository.createInvitation(familyId,
 				fromUsername, toUsername);
 		List<Boolean> result = new ArrayList<Boolean>();
@@ -64,20 +61,20 @@ public class InvitationsController extends AuthorizedController {
 		return result;
 	}
 
-	@RequestMapping(value = "/accept/{familyId}/{invitationId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/accept/{eventId}/{invitationId}", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Boolean> acceptInvitation(@PathVariable int familyId,
+	List<Boolean> acceptInvitation(@PathVariable int eventId,
 			@PathVariable int invitationId, Model model, Principal principal) {
 		logger.info("Accept invitation");
 
-		String username = principal.getName();
-		return invitationRepository.acceptInvitation(familyId, username,
+		int userId = getCurrentUser().getUserId();
+		return invitationRepository.acceptInvitation(eventId, userId,
 				invitationId);
 	}
 
-	@RequestMapping(value = "/decine/{invitationId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/reject/{invitationId}", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Boolean> decineInvitation(@PathVariable int invitationId, Model model,
+	List<Boolean> rejectInvitation(@PathVariable int invitationId, Model model,
 			Principal principal) {
 		logger.info("Decine invitation");
 

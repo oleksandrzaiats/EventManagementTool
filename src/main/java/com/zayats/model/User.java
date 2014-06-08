@@ -1,11 +1,12 @@
 package com.zayats.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("restriction")
 @XmlRootElement(name = "user")
@@ -27,6 +28,8 @@ public class User {
 	@NotEmpty
 	@Size(max = 50)
 	private String lastName;
+    @JsonIgnore
+    private String role;
 
 	public User() {
 	}

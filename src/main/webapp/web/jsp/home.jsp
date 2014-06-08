@@ -3,12 +3,12 @@
 
 <h2> Welcome, ${username}!</h2>
 <hr>
-<p><h3>Check shoplists of your family!</h3></p>
-Go to <a href="<spring:url value="/home/shoplists.html"/>">shoplists</a> and check what shopitems are bought or manage shoplists or shopitems.
-<p><h3>Manage your families!</h3></p>
-Go to <a href="<spring:url value="/home/families.html"/>">your own famillies</a> and create and invite users to family or manage it.
+<p><h3>Check the progress of your Events!</h3></p>
+Go to <a href="<spring:url value="/home/tasks.html"/>">tasks</a> and check tasks you are responsive to.
+<p><h3>Manage your Events!</h3></p>
+Go to <a href="<spring:url value="/home/events.html"/>">your own events</a> to create event, invite users and manage it.
 <p><h3>Check Invitations!</h3></p> 
-Maybe somebody invite you to his family? <a href="<spring:url value="/home/invitations.html"/>">Check it!</a>
+Maybe somebody invite you to his event? <a href="<spring:url value="/home/invitations.html"/>">Check it!</a>
 
 <script src="<spring:url value="/web/js/jquery-2.0.0.js" />"></script>
 <script src="<spring:url value="/web/js/jquery.validate.js" />"></script>

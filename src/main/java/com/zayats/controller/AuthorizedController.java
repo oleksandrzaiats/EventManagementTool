@@ -13,8 +13,8 @@ public abstract class AuthorizedController {
     static {
         naviMap = new HashMap<String, String>();
         naviMap.put("Home", "/home.html");
-        naviMap.put("Manage My Events", "/home/events.html");
-        naviMap.put("My Shoplists", "/home/shoplists.html");
+        naviMap.put("My Events", "/home/events.html");
+        naviMap.put("Tasks", "/home/tasks.html");
         naviMap.put("Invitations", "/home/invitations.html");
     }
 
