@@ -107,8 +107,8 @@
                         <label for="description" class="col-sm-5 control-label">Description</label>
 
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="description" name="description"
-                                   path="description" placeholder="Description">
+                            <textarea class="form-control" id="description" name="description"
+                                   path="description" placeholder="Description"></textarea>
                         </div>
                     </div>
 
