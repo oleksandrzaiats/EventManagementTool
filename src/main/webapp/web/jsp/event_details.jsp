@@ -89,19 +89,29 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel no-border panel-default">
+            <div class="panel-heading panel-header">Days to event</div>
+            <div class="panel-body" style="text-align: center; height: 168px;">
+                <span id="toEvent"></span><span> days left</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel no-border panel-default">
+            <div class="panel-heading panel-header">Most productive participants</div>
+            <div class="panel-body" style="height: 168px; padding-top: 0px; padding-bottom: 0px;">
+                <div id="productive"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <c:if test="${userId == event.owner.userId}">
     <div class="row">
         <div class="col-md-12">
             <a class="btn btn-primary next" href="/home/events/users/${event.id}">Manage Users</a>
-
-            <p/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
             <a class="btn btn-primary next" href="/home/tasks/show/${event.id}">Manage Tasks</a>
-
-            <p/>
         </div>
     </div>
 </c:if>
@@ -122,7 +132,9 @@
     google.load("visualization", "1", {packages: ["corechart"]});
     google.setOnLoadCallback(redrawTaskChart("${event.id}"));
     $(document).ready(function () {
-        $(window).resize(google.setOnLoadCallback(redrawTaskChart("${event.id}")))
+        $(window).resize(google.setOnLoadCallback(redrawTaskChart("${event.id}")));
+        $("#toEvent").html(moment("<fmt:formatDate value="${event.date}" pattern="dd/MM/yyyy"/>", "DD/MM/YYYY").utc().diff(moment(moment(new Date()).format("DD/MM/YYYY"), "DD/MM/YYYY"), "days"));
+
     });
 </script>
 <%@include file="footer.jsp" %>

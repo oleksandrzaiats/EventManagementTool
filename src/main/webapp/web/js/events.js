@@ -24,6 +24,17 @@ function redrawTaskChart(eventId) {
 
                 var chart = new google.visualization.PieChart(document.getElementById('taskChart'));
                 chart.draw(data, options);
+                $("#productive").empty();
+                if(result["users"] != null && result["users"].length > 0) {
+                    var message = "<table class='table table-striped'><thead><tr><th>User</th><th>Done tasks</th></tr></thead><tbody>";
+                    for(i = 0; i < result["users"].length && i < 3; i++) {
+                        message += "<tr><td>" + result["users"][i].key + "</td><td>" + result["users"][i].value + "</td></tr>";
+                    }
+                    message += "</tbody></table>";
+                    $("#productive").html(message);
+                } else {
+                    $("#productive").text("No participants in event.");
+                }
             }
             else {
                 $('#taskChart').text("No tasks in Event.");

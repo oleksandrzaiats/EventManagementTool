@@ -10,6 +10,10 @@ body {
 	color: red;
 }
 
+#footer {
+    margin-top: 20px;
+}
+
 .td-right {
 	padding-top: 7px;
 	text-align: right;
@@ -65,49 +69,6 @@ body {
 	padding: 6px;
 }
 
-.shopitems-table td {
-	border-bottom: 1px solid #eeeeee;
-	padding: 6px;
-}
-
-.shopitems-name {
-	width: 300px;
-}
-
-.shopitems-quantity {
-	width: 110px;
-}
-
-.shopitems-action {
-	width: 100px;
-}
-
-#shopitems {
-	border: 2px solid #eeeeee;
-	width: 510px;
-	border-radius: 6px;
-	margin-left: 8px;
-	padding: 10px;
-	border-radius: 6px;
-	min-height: 200px;
-}
-
-#shopitems b {
-	font-size: large;
-	padding-right: 20px;
-}
-
-.shoplists td {
-	vertical-align: top;
-	text-align: left;
-}
-
-.shoplists {
-	width: 680px;
-	min-width: 680px;
-	max-width: 680px;
-}
-
 .sidebar {
 	width: 250px;
 	float: left;
@@ -151,12 +112,12 @@ div #form {
 }
 
 .jumbotron {
-	margin: 40px;
+	margin: 10px;
 	text-align: center;
 }
 
 .jumbotron h1 {
-	font-size: 60px;
+	font-size: 30px;
 	line-height: 1;
 }
 
@@ -190,6 +151,7 @@ div #form {
 .panel-header {
     background-color: #1EBAA5 !important;
     color: #ffffff !important;
+    border-radius: 0px;
 }
 
 .no-border {
@@ -209,5 +171,13 @@ div #form {
 
 .open-menu {
     background-color: #ffffff;
+}
+
+#toEvent {
+    font-size: 72px;
+}
+
+#productive div {
+
 }
 
