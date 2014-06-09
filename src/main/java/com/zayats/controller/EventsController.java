@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "home/events")
@@ -171,5 +173,28 @@ public class EventsController extends AuthorizedController {
             model.addAttribute("error", e.getMessage());
         }
         return "redirect:/home/events";
+    }
+
+    @RequestMapping(value = "/calendar")
+    public String calendar(Model model, Principal principal) {
+        model.addAttribute("navigation", naviMap);
+        model.addAttribute("title", "Events");
+        String username = principal.getName(); // get logged in username
+        model.addAttribute("username", username);
+        List<Event> list = null;
+        try {
+            logger.info("Get events for user.");
+            list = eventsRepository.getAllEventsForUser(getCurrentUser().getUserId());
+        } catch (EmptyResultDataAccessException e) {
+            logger.info("Can't get events for user. No data received.");
+            model.addAttribute("error",
+                    "Can't get events for user. Please, try later.");
+        }
+
+        if (list.size() == 0)
+            list = null;
+
+        model.addAttribute("events", list);
+        return "calendar";
     }
 }

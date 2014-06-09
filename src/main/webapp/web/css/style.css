@@ -177,7 +177,38 @@ div #form {
     font-size: 72px;
 }
 
-#productive div {
-
+.eventsCalendar-currentTitle {
+    background-color: #1EBAA5 !important;
+    outline: none !important;
 }
 
+.eventsCalendar-daysList.showAsWeek {
+    background-color: transparent !important;
+    background-image: none;
+}
+
+.eventsCalendar-daysList li.today a {
+    color: #000000;
+    background: #F0F0F0;
+    box-shadow: inset 2px 2px 2px #D0D0D0;
+    text-shadow: none;
+}
+
+li.eventsCalendar-day.today a:hover {
+    box-shadow: inset 2px 2px 2px #D0D0D0;
+    background: #F8F8F8;
+    text-shadow: none;
+}
+
+.eventsCalendar-daysList li.dayWithEvents a {
+    background: #1EBAA5;
+    box-shadow: inset 2px 2px 2px #B0B0B0;
+    text-shadow: none;
+    color: #fff;
+}
+
+li.eventsCalendar-day.dayWithEvents a:hover {
+    background-color: #30BF78;
+    box-shadow: inset 2px 2px 2px #B0B0B0;
+    text-shadow: none;
+}

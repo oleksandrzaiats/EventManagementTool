@@ -14,13 +14,17 @@
     <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/bootstrap.css"/>"/>
     <link rel="stylesheet" type="text/css"
-          href="<spring:url value="/web/css/style.css"/>"/>
-    <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/tabs.css"/>"/>
     <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/bootstrap-select.css"/>"/>
     <link rel="stylesheet" type="text/css"
+          href="<spring:url value="/web/css/eventCalendar.css"/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<spring:url value="/web/css/eventCalendar_theme.css"/>"/>
+    <link rel="stylesheet" type="text/css"
           href="<spring:url value="/web/css/bootstrap-datetimepicker.css"/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<spring:url value="/web/css/style.css"/>"/>
 
 </head>
 
