@@ -193,6 +193,8 @@ public class TasksController extends AuthorizedController {
         Task task = taskRepository.taskDetail(taskId);
         model.addAttribute("navigation", naviMap);
         model.addAttribute("task", task);
+        String username = getCurrentUser().getUsername(); // get logged in username
+        model.addAttribute("username", username);
         model.addAttribute("userId", getCurrentUser().getUserId());
         List<User> usersList = null;
         try {

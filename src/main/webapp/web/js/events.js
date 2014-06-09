@@ -6,7 +6,7 @@ function redrawTaskChart(eventId) {
         dataType : 'json',
         async : true,
         success : function(result) {
-            if(result != null && ((result["DONE"] + result["OPEN"] + result["IN_PROGRESS"]) != 0)) {
+            if(result != null && ((result["DONE"] + result["OPEN"] + result["IN_PROGRESS"]) != 0) && (result["DONE"] || result["OPEN"] || result["IN_PROGRESS"])) {
                 var data = google.visualization.arrayToDataTable([
                     ['Tasks', '%'],
                     ['Done', result["DONE"]],
@@ -33,11 +33,12 @@ function redrawTaskChart(eventId) {
                     message += "</tbody></table>";
                     $("#productive").html(message);
                 } else {
-                    $("#productive").text("No participants in event.");
+                    $("#productive").text("No participants with done tasks in event.");
                 }
             }
             else {
                 $('#taskChart').text("No tasks in Event.");
+                $("#productive").text("No participants with done tasks in event.");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
