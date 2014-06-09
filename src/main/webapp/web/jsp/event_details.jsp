@@ -18,8 +18,8 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-default projectSummary">
-            <div class="panel-heading">Detail Information</div>
+        <div class="panel no-border panel-default projectSummary">
+            <div class="panel-heading panel-header">Detail Information</div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6">
@@ -81,8 +81,8 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Tasks</div>
+        <div class="panel no-border panel-default">
+            <div class="panel-heading panel-header">Tasks</div>
             <div class="panel-body">
                 <div id="taskChart"></div>
             </div>

@@ -173,3 +173,37 @@ div #form {
 #taskChart {
     height: 170px;
 }
+
+.header {
+    background-color: #1EBAA5;
+    border-color: darkgray;
+}
+
+.header .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.header .navbar-brand {
+    color: #ffffff;
+}
+
+.panel-header {
+    background-color: #1EBAA5 !important;
+    color: #ffffff !important;
+}
+
+.no-border {
+    border-radius: 0px;
+}
+
+.btn-primary {
+    background-color: #1EBAA5;
+    border-color: darkgray;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #45B8A6;
+    border-color: darkgray;
+}
+

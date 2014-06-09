@@ -26,7 +26,7 @@
 
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="header navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <%
             String style = "";
