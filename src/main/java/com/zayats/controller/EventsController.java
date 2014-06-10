@@ -13,12 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -55,7 +57,7 @@ public class EventsController extends AuthorizedController {
 
     @RequestMapping(value = "/{eventId}")
     public String getEvent(@PathVariable String eventId, Model model,
-                                Principal principal) {
+                           Principal principal) {
         logger.info("Getting event details");
 
         model.addAttribute("navigation", naviMap);
@@ -196,5 +198,13 @@ public class EventsController extends AuthorizedController {
 
         model.addAttribute("events", list);
         return "calendar";
+    }
+
+    @RequestMapping(value = "/dashboard")
+    public
+    @ResponseBody
+    List<HashMap<String, Object>> dashboard() {
+        List<HashMap<String, Object>> dashboard = eventsRepository.getDashboard(getCurrentUser().getUserId());
+        return dashboard;
     }
 }

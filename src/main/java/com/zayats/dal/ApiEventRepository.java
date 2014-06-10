@@ -114,4 +114,9 @@ public class ApiEventRepository {
         }
         return result;
     }
+
+    public List<HashMap<String, Object>> getDashboard(Integer userId) {
+        return restTemplate.getForObject(ApiUtils.url + "/home/events/dashboard/"
+                + userId, List.class);
+    }
 }
