@@ -1,6 +1,6 @@
 function TasksManager() {
-    this.url = "http://emtclient.herokuapp.com";
-//    this.url = "http://localhost:8080";
+//    this.url = "http://emtclient.herokuapp.com";
+    this.url = "http://emtapi-zayats.rhcloud.com";
 }
 
 TasksManager.prototype.addTask = function (familyId, clicked) {

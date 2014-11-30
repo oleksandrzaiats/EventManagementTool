@@ -12,8 +12,8 @@ jQuery(function ($) {
     });
 });
 
-var url = "http://emtclient.herokuapp.com";
-//var url = "http://localhost:8080";
+//var url = "http://emtclient.herokuapp.com";
+var url = "http://emtapi-zayats.rhcloud.com";
 
 // Getting users in family manager page
 $("#search-button").click(function () {

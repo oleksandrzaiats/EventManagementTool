@@ -19,8 +19,8 @@
 <script src="<spring:url value="/web/js/jquery.eventCalendar.js" />"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-var url = "http://emtclient.herokuapp.com";
-//        var url = "http://localhost:8080";
+//var url = "http://emtclient.herokuapp.com";
+        var url = "http://emtapi-zayats.rhcloud.com";
         var eventsInline = [
             <c:forEach var="event" items="${events}">
                 { "date": "${event.date}", "type": "meeting", "title": "${event.name}", "description": "${event.description != null ? event.description : "No description"}", "url": url + "/home/events/" + ${event.id} },
