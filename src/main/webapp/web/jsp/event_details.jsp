@@ -15,7 +15,14 @@
     </div>
 </div>
 <h3>Event: ${event.name}</h3>
-
+<c:if test="${userId == event.owner.userId}">
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-md-12">
+            <a class="btn btn-primary next" href="/home/events/users/${event.id}">Manage Users</a>
+            <a class="btn btn-primary next" href="/home/tasks/show/${event.id}">Manage Tasks</a>
+        </div>
+    </div>
+</c:if>
 <div class="row">
     <div class="col-md-6">
         <div class="panel no-border panel-default projectSummary">
@@ -107,14 +114,6 @@
         </div>
     </div>
 </div>
-<c:if test="${userId == event.owner.userId}">
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-primary next" href="/home/events/users/${event.id}">Manage Users</a>
-            <a class="btn btn-primary next" href="/home/tasks/show/${event.id}">Manage Tasks</a>
-        </div>
-    </div>
-</c:if>
 <script src="<spring:url value="/web/js/jquery-2.0.0.js" />"></script>
 <script src="<spring:url value="/web/js/jquery.validate.js" />"></script>
 <script src="<spring:url value="/web/js/bootstrap.js" />"></script>

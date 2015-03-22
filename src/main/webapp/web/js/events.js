@@ -78,7 +78,6 @@ function confirmDeleteUser(event, button, userId, eventId) {
         });
     }
 
-//    http://familyshoplist.herokuapp.com/home/users/delete/${user.username}/${event.id}
 }
 
 function confirmDeleteEvent(event, button, eventId) {
@@ -93,6 +92,7 @@ function confirmDeleteEvent(event, button, eventId) {
             success: function (result) {
                 if (result) {
                     $("#events tr[data-event='" + eventId + "']").remove();
+                    window.location="../home/events";
                 }
                 else {
                     $(button).text("Error");

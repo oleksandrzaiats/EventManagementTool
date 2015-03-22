@@ -1,5 +1,5 @@
 function TasksManager() {
-//    this.url = "http://emtclient.herokuapp.com";
+//    this.url = "http://localhost:8084";
     this.url = "http://emtapi-zayats.rhcloud.com";
 }
 
@@ -31,7 +31,7 @@ TasksManager.prototype.addTask = function (familyId, clicked) {
                     family.click();
                 }
                 else {
-                    $('#task-name-error').html('Error catched in creating task. Family maybe doesn\'t exists. Refresh page or try later.').css('color', 'red');
+                    $('#task-name-error').html('Error was caught while creating task. Family maybe doesn\'t exists. Refresh page or try later.').css('color', 'red');
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

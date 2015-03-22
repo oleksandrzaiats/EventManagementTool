@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "home/events")
@@ -160,7 +157,8 @@ public class EventsController extends AuthorizedController {
     }
 
     @RequestMapping(value = "/delete/{eventsId}")
-    public String deleteEvent(@PathVariable String eventsId, Model model,
+    public @ResponseBody
+    List<Boolean> deleteEvent(@PathVariable String eventsId, Model model,
                               Principal principal) {
         logger.info("Delete events");
 
@@ -174,7 +172,7 @@ public class EventsController extends AuthorizedController {
         } catch (DataAccessDbException e) {
             model.addAttribute("error", e.getMessage());
         }
-        return "redirect:/home/events";
+        return Arrays.asList(new Boolean[]{true});
     }
 
     @RequestMapping(value = "/calendar")

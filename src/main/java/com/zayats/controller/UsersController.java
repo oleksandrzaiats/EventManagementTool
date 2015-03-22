@@ -24,7 +24,7 @@ public class UsersController extends AuthorizedController {
 	ApiUserRepository userRepository;
 
 	@Autowired
-    ApiEventRepository familyRepository;
+    ApiEventRepository apiEventRepository;
 
 	@Autowired
 	ApiInvitationRepository invitationRepository;
@@ -37,10 +37,9 @@ public class UsersController extends AuthorizedController {
 		model.addAttribute("title", "Families");
 		String username1 = getCurrentUser().getUsername(); // get logged in username
 		model.addAttribute("username", username1);
-		familyRepository.deleteUserFromEvent(userId, familyId);
+		apiEventRepository.deleteUserFromEvent(userId, familyId);
 
         return Arrays.asList(new Boolean[]{true});
-        //		return "redirect:/home/families/" + familyId;
 	}
 
 	@RequestMapping(value = "/{userString}/{familyId}", method = RequestMethod.GET)
